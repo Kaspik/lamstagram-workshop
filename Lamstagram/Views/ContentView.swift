@@ -10,7 +10,22 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello world!")
+        TabView {
+            NavigationView {
+                FeedView(posts: MockData.posts).navigationBarTitle("Feed")
+            }
+            .tabItem {
+                Image(systemName: "house")
+                Text("Feed")
+            }.tag(0)
+            NavigationView {
+                ProfileView().navigationBarTitle("Feed")
+            }
+            .tabItem {
+                Image(systemName: "person")
+                Text("Profile")
+            }.tag(1)
+        }
     }
 }
 
