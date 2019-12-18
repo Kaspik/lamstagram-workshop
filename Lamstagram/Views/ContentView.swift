@@ -19,7 +19,7 @@ struct ContentView: View {
                 Text("Feed")
             }.tag(0)
             NavigationView {
-                ProfileView().navigationBarTitle("Feed")
+                ProfileView(user: MockData.users.first!).navigationBarTitle("Feed")
             }
             .tabItem {
                 Image(systemName: "person")

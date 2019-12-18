@@ -9,13 +9,24 @@
 import SwiftUI
 
 struct ProfileView: View {
+    var user: User
+
     var body: some View {
-        Text("Profile")
+        GeometryReader { geometry in
+            ScrollView {
+                ProfileHeaderView(user: self.user)
+                    .padding(.horizontal)
+                    .font(.system(size: 15))
+                ProfileFriendsView(user: self.user)
+                    .padding(.horizontal)
+                ProfilePostsView(user: self.user, width: geometry.size.width)
+            }
+        }
     }
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(user: MockData.users.first!)
     }
 }
