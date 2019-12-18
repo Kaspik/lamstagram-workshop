@@ -31,7 +31,8 @@ struct PostView: View {
                         .aspectRatio(contentMode: .fit)
                         .edgesIgnoringSafeArea(.bottom)
                 })
-            PostToolbarView().padding()
+            PostToolbarView(post: post)
+                .padding()
         }
     }
 }

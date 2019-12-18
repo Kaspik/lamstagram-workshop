@@ -10,6 +10,7 @@ import SwiftUI
 
 struct FeedView: View {
     var posts: [Post]
+
     var body: some View {
         ScrollView(.vertical) {
             ForEach(posts) { post in

@@ -9,10 +9,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     var body: some View {
         TabView {
             NavigationView {
-                FeedView(posts: MockData.posts).navigationBarTitle("Feed")
+                FeedView(posts: MockData.posts)
+                    .navigationBarTitle("Feed")
             }
             .tabItem {
                 Image(systemName: "house")
