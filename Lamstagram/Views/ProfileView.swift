@@ -21,7 +21,7 @@ struct ProfileView: View {
                     .padding(.horizontal)
                 ProfilePostsView(user: self.user, width: geometry.size.width)
             }
-        }
+        }.navigationBarTitle(user.name)
     }
 }
 

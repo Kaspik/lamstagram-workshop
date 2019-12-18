@@ -15,7 +15,7 @@ struct ProfilePostsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 1) {
             ForEach(self.user.posts.chunked(into: 3)) { chunk in
-                ProfilePostsRowView(chunk: chunk, width: self.width)
+                ProfilePostsRowView(user: self.user, chunk: chunk, width: self.width)
             }
         }
     }

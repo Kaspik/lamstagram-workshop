@@ -10,12 +10,28 @@ import SwiftUI
 
 struct PostView: View {
     var post: Post
+    @State var isPresented: Bool = false
+
     var body: some View {
         VStack(alignment: .leading) {
-            PostHeaderView(post: self.post).padding(.horizontal)
+            NavigationLink(destination: ProfileView(user: post.user)) {
+                PostHeaderView(post: self.post).padding(.horizontal)
+            }
+            .buttonStyle(PlainButtonStyle())
+            Button(action: {
+                self.isPresented = true
+            }, label: {
                 Image(self.post.imageName)
                     .resizable().aspectRatio(contentMode: .fit)
-                PostToolbarView().padding()
+            })
+                .buttonStyle(PlainButtonStyle())
+                .sheet(isPresented: self.$isPresented, content: {
+                    Image(self.post.imageName)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .edgesIgnoringSafeArea(.bottom)
+                })
+            PostToolbarView().padding()
         }
     }
 }

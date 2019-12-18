@@ -15,15 +15,18 @@ struct ProfileFriendsView: View {
         ScrollView(.horizontal) {
             HStack {
                 ForEach(user.friends) { friend in
-                    VStack {
-                        Image(friend.imageName)
-                            .resizable()
-                            .clipShape(Circle())
-                            .aspectRatio(contentMode: .fit)
-                        Text(friend.name.uppercased())
-                            .font(.caption)
-                        .lineLimit(1)
+                    NavigationLink(destination: ProfileView(user: friend)) {
+                        VStack {
+                            Image(friend.imageName)
+                                .resizable()
+                                .clipShape(Circle())
+                                .aspectRatio(contentMode: .fit)
+                            Text(friend.name.uppercased())
+                                .font(.caption)
+                                .lineLimit(1)
+                        }
                     }
+                    .buttonStyle(PlainButtonStyle())
                     .frame(width: 75, height: 75)
                 }
             }
