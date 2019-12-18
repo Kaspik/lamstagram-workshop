@@ -9,12 +9,32 @@
 import SwiftUI
 
 struct FeedView: View {
-    var posts: [Post]
+    @ObservedObject var feedStore: FeedStore
+    @State var isGrowing: Bool = true
+
+    init(user: User) {
+        feedStore = FeedStore(user: user)
+    }
 
     var body: some View {
-        ScrollView(.vertical) {
-            ForEach(posts) { post in
-                PostView(post: post)
+        Group {
+            if feedStore.posts.isEmpty {
+                Image("llama")
+                    .resizable()
+                    .clipShape(Circle())
+                    .frame(width: 60, height: 60)
+                    .aspectRatio(contentMode: .fit)
+                    .scaleEffect(self.isGrowing ? 1.5 : 1)
+                    .animation(Animation.default.repeatForever().delay(0.8))
+                    .onAppear {
+                        self.isGrowing.toggle()
+                    }
+            } else {
+                ScrollView(.vertical) {
+                    ForEach(feedStore.posts) { post in
+                        PostView(post: post)
+                    }
+                }
             }
         }
     }
@@ -22,6 +42,6 @@ struct FeedView: View {
 
 struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedView(posts: MockData.posts)
+        FeedView(user: MockData.users.first!)
     }
 }

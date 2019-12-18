@@ -12,11 +12,11 @@ final class FeedStore: ObservableObject {
     @Published var posts: [Post] = []
     
     init(user: User?) {
-        self.posts = user?.posts ?? MockData.posts
+//        self.posts = user?.posts ?? MockData.posts
         
         // Bonus task
-        /*DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             self.posts = user?.posts ?? MockData.posts
-        }*/
+        }
     }
 }

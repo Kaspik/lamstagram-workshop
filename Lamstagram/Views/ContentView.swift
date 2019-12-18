@@ -9,11 +9,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var userStore: AuthenticatedUserStore
     
     var body: some View {
         TabView {
             NavigationView {
-                FeedView(posts: MockData.posts)
+                FeedView(user: userStore.user!)
                     .navigationBarTitle("Feed")
             }
             .tabItem {
@@ -21,7 +22,7 @@ struct ContentView: View {
                 Text("Feed")
             }.tag(0)
             NavigationView {
-                ProfileView(user: MockData.users.first!)
+                ProfileView(user: userStore.user!)
             }
             .tabItem {
                 Image(systemName: "person")

@@ -16,7 +16,7 @@ struct ProfilePostsRowView: View {
     var body: some View {
         HStack(spacing: 1) {
             ForEach(chunk.items) { post in
-                NavigationLink(destination: FeedView(posts: self.user.posts)) {
+                NavigationLink(destination: FeedView(user: self.user)) {
                     Image(post.imageName)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -34,3 +34,4 @@ struct ProfilePostsRowView_Previews: PreviewProvider {
         ProfilePostsRowView(user: MockData.users.first!, chunk: MockData.posts.chunked(into: 3).first!, width: 300)
     }
 }
+
